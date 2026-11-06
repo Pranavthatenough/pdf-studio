@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF Studio</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true">P</span><span>PDF Studio</span></div>
+  <div class="filemeta" id="fileMeta">No file open</div>
+  <div class="top-actions">
+    <button class="icon-btn" id="undoBtn" title="Undo (Ctrl+Z)" disabled>↶ <span class="lbl">Undo</span></button>
+    <button class="icon-btn" id="redoBtn" title="Redo (Ctrl+Y)" disabled>↷ <span class="lbl">Redo</span></button>
+    <button class="btn" id="openBtn">Open PDF</button>
+    <button class="btn primary" id="saveBtn" disabled>Save PDF</button>
+  </div>
+  <input type="file" id="openInput" accept="application/pdf,.pdf" hidden>
+</header>
+
+<div class="app" id="app">
+  <nav class="rail" id="rail" aria-label="Tool groups"></nav>
+
+  <aside class="thumbs" id="thumbsPane" aria-label="Pages">
+    <div class="thumbs-head">
+      <span>Pages <b id="pageCount">0</b></span>
+      <span class="thumbs-sel" id="selInfo"></span>
+    </div>
+    <div class="thumbs-actions">
+      <button class="mini" id="selAll">Select all</button>
+      <button class="mini" id="selNone">Clear</button>
+    </div>
+    <div class="thumb-list" id="thumbList"></div>
+  </aside>
+
+  <main class="stage">
+    <div class="toolbar" id="toolbar" role="toolbar"></div>
+    <div class="pending-bar" id="pendingBar" hidden>
+      <span id="pendingText"></span>
+      <button class="mini" id="discardBtn">Discard</button>
+      <button class="mini solid" id="applyBtn">Apply edits</button>
+    </div>
+    <div class="viewer" id="viewer">
+      <div class="page-wrap" id="pageWrap">
+        <canvas id="pageCanvas"></canvas>
+        <svg id="overlay" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <div class="empty" id="empty">
+        <div class="empty-card">
+          <p class="eyebrow">Works offline · nothing leaves this laptop</p>
+          <h1>Open a PDF to start</h1>
+          <p class="lead">Merge, split, sign, redact, stamp, convert and compress. Everything runs in this browser tab; no upload, no account.</p>
+          <div class="drop" id="drop">
+            <b>Drop a PDF here</b>
+            <span>or</span>
+            <button class="btn primary" id="emptyOpen">Choose a PDF</button>
+          </div>
+          <div class="empty-alt">
+            <button class="btn" id="sampleBtn">Try a 50-page sample</button>
+            <button class="btn" id="imgStartBtn">Make a PDF from images</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pager" id="pager">
+      <button class="icon-btn" id="prevBtn" title="Previous page">‹</button>
+      <span class="pageno"><input id="pageInput" type="text" inputmode="numeric" aria-label="Page number"> / <span id="pageTotal">0</span></span>
+      <button class="icon-btn" id="nextBtn" title="Next page">›</button>
+      <span class="sep"></span>
+      <button class="icon-btn" id="zoomOut" title="Zoom out">−</button>
+      <span class="zoomval" id="zoomVal">Fit</span>
+      <button class="icon-btn" id="zoomIn" title="Zoom in">+</button>
+      <button class="mini" id="zoomFit">Fit width</button>
+      <button class="mini" id="zoomPage">Fit page</button>
+    </div>
+  </main>
+
+  <aside class="panel" id="panel" aria-label="Tool options"></aside>
+</div>
+
+<footer class="status">
+  <span class="net" id="net"><i></i><span id="netText">Offline ready</span></span>
+  <span class="status-text" id="statusText">Nothing leaves this laptop</span>
+</footer>
+
+<div class="busy" id="busy" hidden><div class="busy-card"><div class="spinner"></div><span id="busyText">Working…</span></div></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<input type="file" id="tmpInput" hidden>
+
+<script src="vendor/pdf.min.js"></script>
+<script src="vendor/pdf.worker.min.js"></script>
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="vendor/jszip.min.js"></script>
+<script src="js/core.js"></script>
+<script src="js/sample.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
