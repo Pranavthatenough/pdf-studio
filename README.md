@@ -2,8 +2,6 @@
 
 A full PDF app that runs on your own laptop. No upload, no account, no internet needed.
 
-BSERC GenAI Internship · Week 2 · Section A (Web tools) · Project 1
-
 ## How to open it
 
 1. Unzip the folder anywhere.
